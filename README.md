@@ -1,11 +1,12 @@
 # Joplin Finance
 
-Um plugin de gestão financeira para o Joplin, criado para facilitar o controle de receitas e despesas diretamente nas suas notas.
+Um plugin de gestão e ajuda financeira para o Joplin, criado para facilitar o controle de receitas, despesas e alocação de investimentos diretamente nas suas notas.
 
 ## Funcionalidades
 - **Cálculo automático de gastos e receitas**: O plugin identifica tabelas markdown de gastos e receitas na nota selecionada e soma os valores automaticamente.
 - **Resumo financeiro**: Insere ao final da nota um resumo com o total de gastos, receitas, saldo e a porcentagem dos gastos sobre as receitas.
-- **Botão na barra de ferramentas**: Adiciona um botão na barra de ferramentas da nota para executar o cálculo com um clique.
+- **Cálculo de alocação de ativos**: Permite calcular, a partir de uma tabela simples, quantas cotas comprar de cada ativo para atingir a alocação recomendada, mostrando também o total investido e total de cotas.
+- **Botão na barra de ferramentas**: Adiciona botões na barra de ferramentas da nota para executar os cálculos com um clique.
 
 ## Como usar
 1. Crie ou edite uma nota no Joplin.
@@ -28,5 +29,23 @@ Um plugin de gestão financeira para o Joplin, criado para facilitar o controle 
 | Extra     | 500,00    |
 ```
 
-3. Clique no botão "Calcular custos" na barra de ferramentas da nota.
-4. O resumo financeiro será adicionado ao final da nota.
+### Exemplo de tabela de alocação de ativos
+Adicione também o valor total em carteira antes da tabela:
+
+```
+Valor total em carteira: R$ 487,00
+
+| Ativo   | Porcentagem recomendada | Preço atual |
+|---------|------------------------|-------------|
+| ativo11  | 13,78%                 | R$ 10,66    |
+| ativo3  | 20,00%                 | R$ 15,00    |
+| ativod11  | 10,00%                 | R$ 9,50     |
+| ativo4  | 8,00%                  | R$ 10,00    |
+```
+
+3. Clique no botão correspondente na barra de ferramentas da nota ("Calcular custos" ou "Calcular alocação de ativos").
+4. O resultado será adicionado ao final da nota, facilitando sua análise financeira.
+
+---
+
+O Joplin Finance agora é uma ferramenta completa de ajuda financeira, auxiliando tanto no controle de despesas/receitas quanto na organização e planejamento de investimentos.
