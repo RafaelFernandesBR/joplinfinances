@@ -1,20 +1,23 @@
 import joplin from 'api';
 
 // Função para calcular alocação de ativos e retornar o texto consolidado
-export async function calcularAlocacaoAtivosTexto(noteBody: string): Promise<string | null> {
+export async function calcularAlocacaoAtivosTexto() {
+    const note = await joplin.workspace.selectedNote();
+    if (!note) return null;
+
     // Regex para encontrar tabela de alocação de ativos (agora só 3 colunas)
     const tabelaAtivosRegex = /\|\s*Ativo\s*\|\s*Porcentagem recomendada\s*\|\s*Preço atual\s*\|[\s\S]*?\n((?:\|.*\|.*\|.*\|\n?)+)/i;
     // Regex para encontrar o valor total em carteira
     const valorInvestirRegex = /Valor total para investir\s*[:=]\s*R\$\s*([\d.,]+)/i;
 
     // Busca valor total em carteira
-    const matchCarteira = noteBody.match(valorInvestirRegex);
+    const matchCarteira = note.body.match(valorInvestirRegex);
     if (!matchCarteira) return null;
     const valorCarteira = parseFloat(matchCarteira[1].replace(/\./g, '').replace(',', '.'));
     if (isNaN(valorCarteira)) return null;
 
     // Busca tabela de ativos
-    const matchAtivos = noteBody.match(tabelaAtivosRegex);
+    const matchAtivos = note.body.match(tabelaAtivosRegex);
     if (!matchAtivos) return null;
     const linhas = matchAtivos[1].split('\n').filter(l => l.trim().startsWith('|'));
 
@@ -34,12 +37,12 @@ export async function calcularAlocacaoAtivosTexto(noteBody: string): Promise<str
         const totalGasto = cotas * precoAtual;
         totalInvestido += totalGasto;
         totalCotas += cotas;
-        textoAtivos += `Ativo: ${ativo}\n  % Recomendada: ${(porcentagem*100).toFixed(2)}%\n  Preço Atual: R$ ${precoAtual.toFixed(2)}\n  Cotas a Comprar: ${cotas}\n  Total Gasto: R$ ${totalGasto.toFixed(2)}\n\n`;
+        textoAtivos += `Ativo: ${ativo}\n  % Recomendada: ${(porcentagem * 100).toFixed(2)}%\n  Preço Atual: R$ ${precoAtual.toFixed(2)}\n  Cotas a Comprar: ${cotas}\n  Total Gasto: R$ ${totalGasto.toFixed(2)}\n\n`;
     }
 
     let resultado = `\n\n**Cálculo de Alocação de Ativos:**\n`;
     resultado += textoAtivos;
     resultado += `Valor total investido: R$ ${totalInvestido.toFixed(2)}\n`;
     resultado += `Total de cotas adquiridas: ${totalCotas}`;
-    return resultado;
+    await joplin.data.put(["notes", note.id], null, { body: note.body + resultado });
 }

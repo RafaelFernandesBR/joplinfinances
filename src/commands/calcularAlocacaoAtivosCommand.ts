@@ -1,13 +1,13 @@
 import joplin from 'api';
 import { ToolbarButtonLocation } from 'api/types';
-import { calcularAlocacaoAtivosNaNotaSelecionada } from '../services/financeiroService';
+import { calcularAlocacaoAtivosTexto } from '../services/alocacaoService';
 
 export async function calcularAlocacaoAtivosCommand() {
     await joplin.commands.register({
         name: 'calcular-alocacao-ativos',
         label: 'Calcular alocação de ativos',
         execute: async () => {
-            await calcularAlocacaoAtivosNaNotaSelecionada();
+            await calcularAlocacaoAtivosTexto();
         }
     });
 

@@ -1,5 +1,4 @@
 import joplin from 'api';
-import { calcularAlocacaoAtivosTexto } from './alocacaoService';
 
 // Função para somar valores de tabelas markdown de gastos e receitas e inserir o resultado na nota
 export async function calcularCustosNaNotaSelecionada() {
@@ -46,14 +45,5 @@ export async function calcularCustosNaNotaSelecionada() {
     resultado += `- Saldo: R$ ${saldo.toFixed(2)}\n`;
     resultado += `- Porcentagem dos gastos sobre as receitas: ${porcentagem.toFixed(2)}%`;
 
-    await joplin.data.put(["notes", note.id], null, { body: note.body + resultado });
-}
-
-// Função para calcular alocação de ativos e inserir o consolidado na nota
-export async function calcularAlocacaoAtivosNaNotaSelecionada() {
-    const note = await joplin.workspace.selectedNote();
-    if (!note) return;
-    const resultado = await calcularAlocacaoAtivosTexto(note.body);
-    if (!resultado) return;
     await joplin.data.put(["notes", note.id], null, { body: note.body + resultado });
 }
