@@ -60,7 +60,24 @@ Valor total em carteira: R$ 487,00
 | ativo4  | 8,00%                  | R$ 10,00    |
 ```
 
-3. Clique no botão correspondente na barra de ferramentas da nota ("Calcular custos", "Calcular orçamento" ou "Calcular alocação de ativos").
+### Exemplo de rebalanceamento de carteira
+Adicione o valor total da carteira, a tolerância (opcional) e a tabela de ativos:
+
+```
+Valor total da carteira: R$ 10.000,00
+Tolerância: 3%
+
+| Ativo   | Valor atual | Percentual alvo |
+|---------|------------|-----------------|
+| Ativo 1 | R$ 4.310,00| 40%             |
+| Ativo 2 | R$ 3.000,00| 40%             |
+| Ativo 3 | R$ 2.690,00| 20%             |
+```
+
+- **Tolerância**: Se não informar, o padrão é 1%. Ativos dentro da tolerância não aparecerão no resumo.
+- Apenas ativos que precisam ser rebalanceados serão exibidos no resultado.
+
+3. Clique no botão correspondente na barra de ferramentas da nota ("Calcular custos", "Calcular orçamento", "Rebalancear Carteira" ou "Calcular alocação de ativos").
 4. O resultado será adicionado ao final da nota, facilitando sua análise financeira.
 
 ---
