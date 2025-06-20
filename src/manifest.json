@@ -2,7 +2,7 @@
 	"manifest_version": 1,
 	"id": "com.br.financeJoplin",
 	"app_min_version": "3.3",
-	"version": "1.0.0",
+	"version": "1.5.0",
 	"name": "Joplin Finance",
 	"description": "Um plu-guin de gestão financeira.",
 	"author": "Rafael Fernandes",
